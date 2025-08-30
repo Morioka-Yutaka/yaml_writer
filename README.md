@@ -50,6 +50,7 @@ person: &nw.;
 %yaml_end();
 ~~~
 
+<img width="242" height="130" alt="Image" src="https://github.com/user-attachments/assets/40f096d9-e85a-47a3-9ee2-a7a8e46a185e" />
   
 ---
 
