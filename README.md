@@ -144,3 +144,40 @@ class_1: &nw.;
 <img width="301" height="740" alt="Image" src="https://github.com/user-attachments/assets/17b13bc2-5958-4de6-a3fb-b89076810ef6" />
 
 ---
+
+## `%inline_nest()` macro <a name="inlinenest-macro-2"></a> ######
+ Function   : Create a nested structure in **inline notation**  
+              (mapping or sequence) and store it as a new variable.  
+              This is useful when you want compact inline YAML/JSON-like representations rather than multi-line structures.
+ Parameters :  
+ ~~~text
+   - key=       : Name of the new parent variable
+                  (must not already exist in the dataset)
+   - varlist=   : Variables to be nested under the key
+   - cat=       : "mapping" or "sequence"
+   - maxlength= : Length of the temporary character variable
+                  (set large enough to avoid truncation)
+~~~
+Example    :  
+~~~sas
+data class_inline;
+   set sashelp.class;
+   %inline_nest(key=HW_inline, varlist=HEIGHT WEIGHT, cat=mapping);
+   %inline_nest(key=NAMEAGE_inline, varlist=NAME AGE, cat=sequence);
+run;
+%yaml_start()
+class_inline: &nw.;
+%dataset_export(ds=class_inline
+             ,wh=%nrbquote(AGE in (13:15))
+             ,cat=mappingsequence
+             ,varlist=name HW_inline NAMEAGE_inline
+             ,indent=1)
+;;;;
+%yaml_end();
+~~~
+
+<img width="530" height="632" alt="Image" src="https://github.com/user-attachments/assets/97e4540a-7022-4202-9a38-8306f97f13c8" />
+
+---
+
+
