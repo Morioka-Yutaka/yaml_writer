@@ -141,6 +141,6 @@ class_1: &nw.;
 %yaml_end();
 ~~~
 
-<img width="602" height="1480" alt="Image" src="https://github.com/user-attachments/assets/17b13bc2-5958-4de6-a3fb-b89076810ef6" />
+<img width="301" height="740" alt="Image" src="https://github.com/user-attachments/assets/17b13bc2-5958-4de6-a3fb-b89076810ef6" />
 
 ---
