@@ -54,3 +54,22 @@ person: &nw.;
   
 ---
 
+
+## `%yaml_end()` macro <a name="yamlend-macro-4"></a> ######
+Function   : Finalize YAML output. Close the PROC STREAM block
+              and complete writing to the output file.
+Parameters : (none)
+
+Example    :
+%yaml_start(outpath=C:/tmp, file=sample);
+#This YAML is a sample &nw.;
+person: &nw.;
+  name: Yutaka Morioka &nw.;
+  age: 41 &nw.;
+  height: 170 &nw.;
+  weight: 63 &nw.;
+%yaml_end();
+
+<img width="242" height="130" alt="Image" src="https://github.com/user-attachments/assets/40f096d9-e85a-47a3-9ee2-a7a8e46a185e" />
+  
+---
