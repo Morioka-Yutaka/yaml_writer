@@ -110,3 +110,37 @@ sashelp.class: &nw.;
 
   
 ---
+
+## `%nest()` macro <a name="nest-macro-3"></a> ######
+ Function   : Create nested structures in preparation for YAML output.  
+              A new parent variable (key) is created that contains child variables as either a mapping or a sequence.
+ Parameters :  
+ ~~~text
+   - key=       : Name of the new parent variable (must not exist already)
+   - varlist=   : Variables to be nested under the key
+   - cat=       : "mapping" or "sequence"
+   - indent=    : Indentation level within the YAML structure
+   - maxlength= : Length of the temporary character variable
+                  (set large enough to avoid truncation)
+~~~
+Example    :  
+~~~sas
+data class_1;
+  set sashelp.class;
+   %nest(key=HW,   varlist=HEIGHT WEIGHT, cat=mapping, indent=3);
+   %nest(key=AHHW, varlist=AGE HW,        cat=mapping, indent=2);
+run;
+%yaml_start()
+class_1: &nw.;
+%dataset_export(ds=class_1
+             ,wh=%nrbquote(AGE in (13:15))
+             ,cat=mappingsequence
+             ,varlist=name HW AHHW
+             ,indent=1)
+;;;;
+%yaml_end();
+~~~
+
+<img width="602" height="1480" alt="Image" src="https://github.com/user-attachments/assets/17b13bc2-5958-4de6-a3fb-b89076810ef6" />
+
+---
