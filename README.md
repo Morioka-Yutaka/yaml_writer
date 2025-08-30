@@ -30,9 +30,7 @@ Since PROC STREAM is used internally, &nw. acts as the newline marker.
 - After preprocessing, pass the new nested variables into %dataset_export.
 
 ## `%yaml_start()` macro <a name="yamlstart-macro-5"></a> ######
-Function   : Initialize YAML output. Define the output file,  
-              set up a global newline macro variable,  
-              and start PROC STREAM.  
+Function   : Initialize YAML output. Define the output file, set up a global newline macro variable, and start PROC STREAM.  
 Parameters :  
 ~~~text
    - outpath= : Output directory path (default = current directory)
@@ -56,11 +54,10 @@ person: &nw.;
 
 
 ## `%yaml_end()` macro <a name="yamlend-macro-4"></a> ######
-Function   : Finalize YAML output. Close the PROC STREAM block
-              and complete writing to the output file.
-Parameters : (none)
-
-Example    :
+Function   : Finalize YAML output. Close the PROC STREAM block and complete writing to the output file.
+Parameters : (none)  
+Example    :  
+~~~sas
 %yaml_start(outpath=C:/tmp, file=sample);
 #This YAML is a sample &nw.;
 person: &nw.;
@@ -69,7 +66,47 @@ person: &nw.;
   height: 170 &nw.;
   weight: 63 &nw.;
 %yaml_end();
+~~~
 
 <img width="242" height="130" alt="Image" src="https://github.com/user-attachments/assets/40f096d9-e85a-47a3-9ee2-a7a8e46a185e" />
+  
+---
+
+## `%dataset_export()` macro <a name="datasetexport-macro-1"></a> ######
+Function   : Export a SAS dataset into YAML format.  
+              Designed in the same spirit as the "export" statement in PROC JSON.  
+ Parameters :  
+ ~~~text
+   - ds=       : Target SAS dataset
+   - wh=       : (Optional) WHERE clause to filter observations
+   - varlist=  : Variables to output, separated by spaces
+   - indent=   : Indentation level (1 → 2 spaces, 2 → 4 spaces, …)
+   - cat=      : Structure type
+                   * mapping
+                       Name: Alfred
+                       Age: 14
+                   * sequence
+                       - Alfred
+                       - 14
+                   * mappingsequence
+                       - Name: Alfred
+                         Age: 14
+~~~
+
+Example    :  
+~~~
+%yaml_start()
+sashelp.class: &nw.;
+%dataset_export(ds=sashelp.class
+             ,wh=%nrbquote(AGE in (13:15))
+             ,cat=mapping
+             ,varlist=NAME AGE SEX
+             ,indent=1)
+;;;;
+%yaml_end();
+~~~
+
+<img width="155" height="317" alt="Image" src="https://github.com/user-attachments/assets/e7048bc0-7535-4da3-adb0-43646016c10d" />
+
   
 ---
