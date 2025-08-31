@@ -102,7 +102,6 @@ sashelp.class: &nw.;
              ,cat=mapping
              ,varlist=NAME AGE SEX
              ,indent=1)
-;;;;
 %yaml_end();
 ~~~
 
@@ -137,7 +136,6 @@ class_1: &nw.;
              ,cat=mappingsequence
              ,varlist=name HW AHHW
              ,indent=1)
-;;;;
 %yaml_end();
 ~~~
 
