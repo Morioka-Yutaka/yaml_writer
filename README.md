@@ -170,7 +170,6 @@ class_inline: &nw.;
              ,cat=mappingsequence
              ,varlist=name HW_inline NAMEAGE_inline
              ,indent=1)
-;;;;
 %yaml_end();
 ~~~
 
